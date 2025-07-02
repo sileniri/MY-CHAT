@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MY CHAT | sign up</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800" rel="stylesheet" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        />
+        <link rel="stylesheet" href="../styles.css" />
+        <script defer src="../app.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>MY CHAT</h1>
+        </header>
+        <main>
+            <div id="signup">
+                <h2>Sign Up</h2>
+                <div id="warning">
+                    Please note: <br />
+                    <em>
+                        Accounts created in MY CHAT are not secure. MY CHATs accounts are only for others to recognise
+                        you.
+                    </em>
+                </div>
+                <form method="post" onsubmit="return false;">
+                    <input placeholder="Username..." type="text" id="username" autocomplete="username" />
+                    <input placeholder="Password..." type="password" id="password" autocomplete="new-password" />
+                    <button id="signup-btn">Sign Up</button>
+                </form>
+                <a href="../login">Already have an account?</a>
+            </div>
+        </main>
+    </body>
+</html>
