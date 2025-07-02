@@ -19,9 +19,9 @@ function changeTheme() {
 if (!user && !(location.href.includes("login") || location.href.includes("signup"))) {
     console.log("firstTime?", firstTime, "allowed", !user && !location.pathname.includes("signup"));
     if (firstTime) {
-        location.pathname = "/signup";
+        location.pathname = "MY-CHAT/signup";
     } else if (!firstTime) {
-        location.pathname = "/login";
+        location.pathname = "MY-CHAT/login";
     }
 } else if (user && (location.href.includes("login") || location.href.includes("signup"))) {
     location.href = "..";
@@ -38,7 +38,7 @@ function logout() {
     location.reload();
 }
 
-if (location.pathname === "/") {
+if (location.pathname === "/MY-CHAT/") {
     document.querySelector("#logout").addEventListener("click", () => {
         logout();
     });
@@ -195,7 +195,7 @@ if (location.href.includes("signup")) {
 
 if (location.pathname.includes("settings")) {
     document.querySelector("#exit-settings").addEventListener("click", () => {
-        location.href = "/";
+        location.pathname = "/MY-CHAT";
     });
 }
 console.log("line 185");
