@@ -47,7 +47,7 @@ if (location.pathname === "/client/") {
     });
 
     //  GET request using fetch()
-    fetch("http://localhost:8080/api/messages")
+    fetch("https://my-chat-server-o4ra.onrender.com/api/messages")
     // Converting received data to JSON
     .then((response) => response.json())
     .then((json) => {
@@ -83,7 +83,7 @@ if (location.pathname === "/client/") {
     function sendMessageData(data) {
         if (data[1].length < 1) return console.log("Missing data");
         // POST request using fetch()
-        fetch("http://localhost:8080/api/messages", {
+        fetch("https://my-chat-server-o4ra.onrender.com/api/messages", {
             // Adding method type
             method: "POST",
 
@@ -125,7 +125,7 @@ if (location.pathname === "/client/") {
 
 if (location.href.includes("login")) {
     function login(username, password) {
-        fetch("http://localhost:8080/api/login", {
+        fetch("https://my-chat-server-o4ra.onrender.com/api/login", {
             // Adding method type
             method: "POST",
             // Adding body or contents to send
@@ -160,7 +160,7 @@ if (location.href.includes("login")) {
 
 if (location.href.includes("signup")) {
     function login(username, password) {
-        fetch("http://localhost:8080/api/signup", {
+        fetch("https://my-chat-server-o4ra.onrender.com/api/signup", {
             // Adding method type
             method: "POST",
             // Adding body or contents to send
@@ -204,7 +204,7 @@ if (location.pathname.includes("account")) {
     function updateAccount(username, password) {
         console.log("Updating...");
 
-        fetch(`http://localhost:8080/api/update/${userID}`, {
+        fetch(`https://my-chat-server-o4ra.onrender.com/api/update/${userID}`, {
             // Adding method type
             method: "PUT",
             // Adding body or contents to send
@@ -240,7 +240,7 @@ if (location.pathname.includes("account")) {
 
     function deleteAccount() {
         if (confirm("Are you sure you want to delete this account")) {
-            fetch(`http://localhost:8080/api/delete/${userID}`, {method: "DELETE"})
+            fetch(`https://my-chat-server-o4ra.onrender.com/api/delete/${userID}`, {method: "DELETE"})
             .then((response) => response.json())
             .then((json) => {
                 logout();
