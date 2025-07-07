@@ -13,8 +13,18 @@ app.use(
 );
 
 app.use(express.json());
-// Messages;
 
+// To reset db tables (for testing)
+app.get("/dev/reset/:type", (req, res) => {
+    let sql = db.prepare(`DELETE FROM ${req.params.type}`);
+    sql.run();
+
+    sql = `SELECT * FROM ${req.params.type}`;
+    const items = db.prepare(sql).all();
+    res.status(200).json({type: items.length > 0});
+});
+
+// Messages;
 app.post("/api/messages", (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "*");
