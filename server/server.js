@@ -7,7 +7,7 @@ const cors = require("cors");
 
 app.use(
     cors({
-        origin: "http://127.0.0.1:5501",
+        origin: "https://my-chat-hagk.onrender.com",
         methods: "*",
     })
 );
