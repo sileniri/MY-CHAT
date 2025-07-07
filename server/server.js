@@ -4,9 +4,13 @@ const app = express();
 const port = process.env.PORT || 8080;
 const cors = require("cors");
 
-app.use(cors({
-    origin: "https://my-chat-hagk.onrender.com/",
-}));
+
+app.use(
+    cors({
+        origin: "http://127.0.0.1:5501",
+        methods: "*",
+    })
+);
 
 app.use(express.json());
 // Messages;
