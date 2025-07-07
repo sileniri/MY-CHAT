@@ -20,9 +20,9 @@ function changeTheme() {
 if (!user && !(location.href.includes("login") || location.href.includes("signup"))) {
     console.log("firstTime?", firstTime, "allowed", !user && !location.pathname.includes("signup"));
     if (firstTime) {
-        location.pathname = "client/signup";
+        location.pathname = "/signup";
     } else if (!firstTime) {
-        location.pathname = "client/login";
+        location.pathname = "/login";
     }
 } else if (user && (location.href.includes("login") || location.href.includes("signup"))) {
     location.href = "..";
@@ -39,7 +39,7 @@ function logout() {
     location.reload();
 }
 
-if (location.pathname === "/client/") {
+if (location.pathname === "//") {
     document.querySelector("#logout").addEventListener("click", () => {
         logout();
     });
@@ -196,7 +196,7 @@ if (location.href.includes("signup")) {
 
 if (location.pathname.includes("settings")) {
     document.querySelector("#exit-settings").addEventListener("click", () => {
-        location.href = "/client";
+        location.href = "/";
     });
 }
 console.log("line 185");
