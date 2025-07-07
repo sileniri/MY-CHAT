@@ -20,12 +20,18 @@ app.options("/api", (req, res) => {
 });
 
 app.post("/api/messages", (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "*");
+    res.setHeader("Access-Control-Allow-Headers", "*");
     const sql = db.prepare(`INSERT INTO messages(user, message, userID) VALUES(?, ?, ?)`);
     sql.run(req.body.username, req.body.messageBody, req.body.userID);
     res.status(200).json("OK");
 });
 
 app.get("/api/messages", (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "*");
+    res.setHeader("Access-Control-Allow-Headers", "*");
     const sql = `SELECT * FROM messages`;
     const messages = db.prepare(sql).all();
     res.status(200).json(messages);
@@ -33,6 +39,9 @@ app.get("/api/messages", (req, res) => {
 
 // Login || Signup
 app.post("/api/login", (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "*");
+    res.setHeader("Access-Control-Allow-Headers", "*");
     const sql = `SELECT id FROM accounts WHERE username = '${req.body.username}' AND password = '${req.body.password}'`;
     const validUser = db.prepare(sql).all();
 
@@ -48,6 +57,9 @@ app.post("/api/login", (req, res) => {
 });
 
 app.get("/api/signup", (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "*");
+    res.setHeader("Access-Control-Allow-Headers", "*");
     let sql = `SELECT * FROM accounts`;
     const available = db.prepare(sql).all();
     res.json(available);
@@ -63,6 +75,9 @@ function avialableUsername(username, extrasql) {
 }
 
 app.post("/api/signup", (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "*");
+    res.setHeader("Access-Control-Allow-Headers", "*");
     const available = avialableUsername(req.body.username, null);
     if (available) {
         const sql = db.prepare(`INSERT INTO accounts(username, password) VALUES(?, ?)`);
@@ -83,6 +98,9 @@ app.post("/api/signup", (req, res) => {
 // Update account
 
 app.put("/api/update/:userID", (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "*");
+    res.setHeader("Access-Control-Allow-Headers", "*");
     console.log(req.body);
     const available = avialableUsername(req.body.username, `AND id <> ${req.params.userID}`);
     if (available) {
@@ -104,6 +122,9 @@ app.put("/api/update/:userID", (req, res) => {
 // Delete account
 
 app.delete("/api/delete/:userID", (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "*");
+    res.setHeader("Access-Control-Allow-Headers", "*");
     let sql = db.prepare(`DELETE FROM accounts WHERE id = '${req.params.userID}'`);
     sql.run();
     sql = db.prepare(
