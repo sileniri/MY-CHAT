@@ -2,7 +2,7 @@ const userID = localStorage.getItem("userID");
 const user = localStorage.getItem("user");
 const password = localStorage.getItem("password");
 const firstTime = !localStorage.getItem("hasUser");
-const serverURL = "http://localhost:8080";
+const serverURL = "https://my-chat-server-cu1k.onrender.com";
 console.log("Line 5");
 
 console.log("localTheme", localStorage.getItem("theme"), Boolean(localStorage.getItem("theme")));
