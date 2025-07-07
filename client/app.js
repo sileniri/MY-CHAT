@@ -81,7 +81,7 @@ if (location.pathname === "/") {
 
         scroll();
     })
-    }, 500);
+    }, 1000);
     
 
     function sendMessageData(data) {
