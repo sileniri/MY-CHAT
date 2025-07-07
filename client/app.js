@@ -39,7 +39,7 @@ function logout() {
     location.reload();
 }
 
-if (location.pathname === "//") {
+if (location.pathname === "/") {
     document.querySelector("#logout").addEventListener("click", () => {
         logout();
     });
