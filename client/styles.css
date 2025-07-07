@@ -68,6 +68,10 @@
 html {
     overflow-y: auto;
     overflow-x: hidden;
+    scroll-behavior: auto;
+}
+
+html:has(#settings-header) {
     scroll-behavior: smooth;
 }
 
