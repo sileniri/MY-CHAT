@@ -1,0 +1,397 @@
+:root {
+    --page-margin-inline: 2vw;
+}
+
+:root[data-theme="light"] {
+    --text: #020014;
+    --background: #efdbff;
+    --primary: #eda3ff;
+    --primary-dim: #eda3ff99;
+    --secondary: #9292f7;
+    --accent: #000a66;
+}
+:root[data-theme="dark"] {
+    --text: #edebff;
+    --background: #140024;
+    --primary: #49005c;
+    --primary-dim: #49005c99;
+    --secondary: #08086d;
+    --accent: #99a3ff;
+}
+
+@view-transition {
+    navigation: auto;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+    width: 16px;
+    background-color: transparent;
+    padding-left: 10px;
+}
+
+::-webkit-scrollbar-corner,
+::-webkit-scrollbar-track {
+    margin-block: 10px;
+    background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: calc(16px / 2);
+    background-color: var(--primary-dim);
+}
+
+::-webkit-scrollbar-button:single-button {
+    display: block;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--primary-dim);
+}
+
+/* Default */
+
+* {
+    cursor: default;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Dosis";
+    color: var(--text);
+    transition: all 0.3s;
+}
+
+::placeholder {
+    color: var(--text);
+    opacity: 50%;
+}
+
+html {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-weight: 400;
+    /* width: 100%; */
+    /* COLORS!! */
+    background-color: var(--background);
+}
+
+header {
+    background-color: var(--background);
+    z-index: 10;
+    padding-inline: var(--page-margin-inline);
+    height: 12vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid 3px var(--primary);
+}
+#settings-header {
+    position: static;
+}
+
+body:not(:has(#settings-header), :has(#login), :has(#signup)) header {
+    width: calc(100% - 3px);
+    border-right: solid 3px var(--primary);
+    border-radius: 0 0 20px 0;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+li {
+    margin-left: 30px;
+    font-size: 1rem;
+}
+
+li::marker {
+    content: "subdirectory_arrow_right";
+    font-family: "material symbols rounded";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 700;
+}
+
+html {
+    font-size: 100%;
+} /* 16px */
+
+h1 {
+    font-size: 4.21rem; /* 67.36px */
+}
+
+h2 {
+    font-size: 3.158rem; /* 50.56px */
+}
+
+h3 {
+    font-size: 2.369rem; /* 37.92px */
+}
+
+h4 {
+    font-size: 1.777rem; /* 28.48px */
+}
+
+h5 {
+    font-size: 1.333rem; /* 21.28px */
+}
+
+small {
+    font-size: 0.75rem; /* 12px */
+}
+
+/* CSS for main app */
+
+button,
+input {
+    outline: none;
+    border: none;
+    background-color: var(--primary);
+    padding: 20px;
+    border-radius: 10px;
+    transition: all 0.5s;
+}
+
+#sendMessages {
+    border-top: 3px solid var(--primary);
+    z-index: 10;
+    background-color: var(--background);
+    height: 15vh;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+body:not(:has(#settings-header), :has(#login), :has(#signup)) #sendMessages {
+    width: calc(100% - 3px);
+    border-right: solid 3px var(--primary);
+    border-radius: 0 20px 0 0;
+}
+
+html:has(#messages) {
+    overflow-y: scroll;
+}
+
+#sendMessages *:nth-child(odd) {
+    margin: 2vw 1vw 2vw var(--page-margin-inline);
+}
+#sendMessages *:nth-child(even) {
+    margin: 2vw var(--page-margin-inline) 2vw 1vw;
+}
+
+#sendMessages input {
+    flex-grow: 2;
+}
+
+#sendMessages button {
+    flex-grow: 1;
+}
+
+header div {
+    display: flex;
+    gap: 2vw;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+button * {
+    cursor: pointer;
+}
+
+input[type="text"],
+input[type="password"] {
+    cursor: text;
+}
+
+header a {
+    text-decoration: none;
+}
+
+a {
+    cursor: pointer;
+}
+
+main:has(#messages) {
+    min-height: 100vh;
+}
+
+.body {
+    margin-top: 5px;
+    padding: 20px;
+    background-color: var(--primary-dim);
+    width: fit-content;
+    max-width: 60vw;
+    border-radius: 10px;
+    position: relative;
+}
+
+.newuser {
+    margin-top: 30px;
+}
+
+#messages {
+    min-height: 100vh;
+    margin-inline: var(--page-margin-inline);
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding-block: 14vh 17vh;
+    overflow: hidden;
+}
+
+.newuser .body::before {
+    z-index: 9;
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    content: attr(data-user);
+    /* -webkit-text-stroke: 1px var(--background); */
+    text-shadow: -1px 1px var(--background), 1px 1px var(--background), 0 1.5px var(--background);
+    text-wrap: nowrap;
+}
+
+.message {
+    display: flex;
+    flex-direction: row;
+}
+
+.message.user {
+    flex-direction: row-reverse;
+}
+
+.message.user .body {
+    text-align: right;
+    background-color: var(--primary);
+}
+
+input:-internal-autofill-selected {
+    appearance: menulist-button;
+    background-image: none !important;
+    background-color: var(--primary-dim) !important;
+    color: var(--text) !important;
+}
+
+/* CSS for login & signup */
+
+body:has(#login, #signup) {
+    height: 100vh;
+}
+
+main:has(#login, #signup) {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#login,
+#signup {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#login *,
+#signup * {
+    margin: 10px;
+}
+
+#login input,
+#signup input {
+    background-color: var(--primary-dim);
+}
+
+#warning,
+#warning * {
+    color: var(--accent);
+}
+
+input:focus,
+input:hover,
+button:hover,
+button:focus {
+    filter: drop-shadow(0 0 10px var(--primary)) drop-shadow(0 0 15px var(--accent));
+}
+
+button:hover,
+input:hover {
+    transform: translate(0, -10px);
+}
+
+/* Settings */
+#container {
+    width: 100%;
+    min-height: calc(100vh - 12vh);
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+aside {
+    border-right: 3px solid var(--primary);
+    padding-inline: var(--page-margin-inline);
+}
+
+body:has(#settings-header) main {
+    flex-grow: 1;
+}
+
+#aside-content {
+    padding-block: var(--page-margin-inline);
+    position: sticky;
+    top: 0;
+}
+
+body:has(#settings-header) main,
+aside {
+    padding-inline: var(--page-margin-inline);
+}
+
+main section {
+    margin-bottom: 30vh;
+    padding-block: var(--page-margin-inline);
+}
+
+main section *:not(h2) {
+    margin-block: 2vh;
+}
+
+main:has(#theme) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#theme {
+    scale: 2;
+}
+
+#theme:hover {
+    filter: drop-shadow(0 0 20px var(--primary)) drop-shadow(0 0 30px var(--accent));
+}
