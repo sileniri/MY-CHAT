@@ -47,7 +47,8 @@ if (location.pathname === "/") {
         location.href = "./settings";
     });
 
-    //  GET request using fetch()
+    setInterval(()=>{
+        //  GET request using fetch()
     fetch(serverURL + "/api/messages")
     // Converting received data to JSON
     .then((response) => response.json())
@@ -79,7 +80,9 @@ if (location.pathname === "/") {
         });
 
         scroll();
-    });
+    })
+    }, 500);
+    
 
     function sendMessageData(data) {
         if (data[1].length < 1) return console.log("Missing data");
