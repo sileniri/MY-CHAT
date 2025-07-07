@@ -4,7 +4,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 const cors = require("cors");
 const corsOptions = {
-    origin: ["http://localhost:5500"],
+    origin: ["https://my-chat-hagk.onrender.com/"],
 };
 
 app.use("/", cors(corsOptions));
@@ -12,7 +12,7 @@ app.use("/", express.json());
 app.use("/", express.urlencoded());
 // Messages;
 
-app.options("/", (req, res) => {
+app.options("/api", (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "*");
     res.setHeader("Access-Control-Allow-Headers", "*");
