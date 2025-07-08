@@ -3,7 +3,9 @@ const user = localStorage.getItem("user");
 const password = localStorage.getItem("password");
 const firstTime = !localStorage.getItem("hasUser");
 const serverURL = "https://my-chat-server-cu1k.onrender.com";
-console.log("Line 5");
+const messageInputPlaceholders = ["Hi", "Nice weather today", "Bla, bla, bla"];
+
+let lastJSON;
 
 console.log("localTheme", localStorage.getItem("theme"), Boolean(localStorage.getItem("theme")));
 
@@ -16,8 +18,11 @@ function changeTheme() {
     document.querySelector("html").setAttribute("data-theme", localStorage.getItem("theme"));
 }
 
-// Checks if logged in
+if (!location.href.includes("account") && location.hash) {
+    location.href = location.href.split("#")[0];
+}
 if (!user && !(location.href.includes("login") || location.href.includes("signup"))) {
+    // Checks if logged in
     console.log("firstTime?", firstTime, "allowed", !user && !location.pathname.includes("signup"));
     if (firstTime) {
         location.pathname = "/signup";
@@ -39,50 +44,81 @@ function logout() {
     location.reload();
 }
 
+function notNewMessages(json) {
+    return json === lastJSON;
+}
+
 if (location.pathname === "/") {
+    const messageInput = document.querySelector("#message");
+    scroll();
     document.querySelector("#logout").addEventListener("click", () => {
         logout();
     });
     document.querySelector("#settings").addEventListener("click", () => {
         location.href = "./settings";
     });
+    let placeholderIndex = 0;
+    setInterval(() => {
+        if (!document.startViewTransition) {
+            return;
+        } else {
+            document.startViewTransition(() =>
+                messageInput.setAttribute("placeholder", messageInputPlaceholders[placeholderIndex] + " ...")
+            );
+        }
 
-    setInterval(()=>{
+        placeholderIndex++;
+        if (placeholderIndex >= messageInputPlaceholders.length) {
+            placeholderIndex = 0;
+        }
+    }, 3000);
+
+    setInterval(() => {
+        let bottomOfPage;
+        if (window.innerHeight + Math.round(window.scrollY) >= document.body.offsetHeight) {
+            bottomOfPage = true;
+        }
         //  GET request using fetch()
-    fetch(serverURL + "/api/messages")
-    // Converting received data to JSON
-    .then((response) => response.json())
-    .then((json) => {
-        console.log(json);
+        fetch(serverURL + "/api/messages")
+        // Converting received data to JSON
+        .then((response) => response.json())
+        .then((json) => {
+            console.log("json", JSON.stringify(json) === JSON.stringify(lastJSON));
 
-        // Create a variable to store HTML
-        const container = document.querySelector("#messages");
+            if (JSON.stringify(json) === JSON.stringify(lastJSON)) {
+                return;
+            }
+            lastJSON = json;
+            console.log(json, lastJSON);
 
-        // Loop through each data and add a table row
-        let lastElemUser;
-        json.forEach((message) => {
-            if (user !== message.user) {
-                if (message.user === lastElemUser) {
-                    container.innerHTML += `<div class="message">
+            // Create a variable to store HTML
+            const container = document.querySelector("#messages");
+            container.innerHTML = "";
+            // Loop through each data and add a table row
+            let lastElemUser;
+            json.forEach((message) => {
+                if (user !== message.user) {
+                    if (message.user === lastElemUser) {
+                        container.innerHTML += `<div class="message">
                                       <p class="body" data-user="${message.user}">${message.message}</p>
                                     </div>`;
+                    } else {
+                        container.innerHTML += `<div class="message newuser">
+                                      <p class="body" data-user="${message.user}">${message.message}</p>
+                                    </div>`;
+                    }
                 } else {
-                    container.innerHTML += `<div class="message newuser">
+                    container.innerHTML += `<div class="message user">
                                       <p class="body" data-user="${message.user}">${message.message}</p>
                                     </div>`;
                 }
-            } else {
-                container.innerHTML += `<div class="message user">
-                                      <p class="body" data-user="${message.user}">${message.message}</p>
-                                    </div>`;
+                lastElemUser = message.user;
+            });
+            if (bottomOfPage) {
+                scroll();
             }
-            lastElemUser = message.user;
         });
-
-        scroll();
-    })
-    }, 1000);
-    
+    }, 2000);
 
     function sendMessageData(data) {
         if (data[1].length < 1) return console.log("Missing data");
@@ -107,7 +143,6 @@ if (location.pathname === "/") {
             console.log(json);
         });
     }
-    const messageInput = document.querySelector("#message");
     document.querySelector("#send").addEventListener("click", () => {
         sendMessageData([user, messageInput.value]);
     });
