@@ -68,11 +68,8 @@
 html {
     overflow-y: auto;
     overflow-x: hidden;
-    scroll-behavior: auto;
-}
-
-html:has(#settings-header) {
     scroll-behavior: smooth;
+    font-size: clamp(10px, calc(1.5vh + 0.5vw), 16px);
 }
 
 body {
@@ -97,6 +94,11 @@ header {
     justify-content: space-between;
     border-bottom: solid 3px var(--primary);
 }
+
+header h1 {
+    text-wrap: nowrap;
+}
+
 #settings-header {
     position: static;
 }
@@ -132,32 +134,28 @@ h5 {
     font-weight: 700;
 }
 
-html {
-    font-size: 100%;
-} /* 16px */
-
 h1 {
-    font-size: 4.21rem; /* 67.36px */
+    font-size: 3.053rem; /* 48.8px */
 }
 
 h2 {
-    font-size: 3.158rem; /* 50.56px */
+    font-size: 2.442rem; /* 39.04px */
 }
 
 h3 {
-    font-size: 2.369rem; /* 37.92px */
+    font-size: 1.954rem; /* 31.2px */
 }
 
 h4 {
-    font-size: 1.777rem; /* 28.48px */
+    font-size: 1.563rem; /* 24.96px */
 }
 
 h5 {
-    font-size: 1.333rem; /* 21.28px */
+    font-size: 1.25rem; /* 20px */
 }
 
 small {
-    font-size: 0.75rem; /* 12px */
+    font-size: 0.8rem; /* 12.8px */
 }
 
 /* CSS for main app */
@@ -305,16 +303,19 @@ body:has(#login, #signup) {
 }
 
 main:has(#login, #signup) {
+    padding-inline: 20px;
+    padding-top: 12vh;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: auto;
 }
 
 #login,
 #signup {
-    width: 50vw;
+    width: minmax(100vw, 200px);
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -322,12 +323,17 @@ main:has(#login, #signup) {
 
 #login *,
 #signup * {
-    margin: 10px;
+    margin-block: 10px;
 }
 
 #login input,
 #signup input {
     background-color: var(--primary-dim);
+}
+
+#login h2,
+#signup h2 {
+    text-wrap: nowrap;
 }
 
 #warning,
@@ -340,11 +346,6 @@ input:hover,
 button:hover,
 button:focus {
     filter: drop-shadow(0 0 10px var(--primary)) drop-shadow(0 0 15px var(--accent));
-}
-
-button:hover,
-input:hover {
-    transform: translate(0, -10px);
 }
 
 /* Settings */
