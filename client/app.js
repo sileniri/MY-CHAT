@@ -118,7 +118,7 @@ if (location.pathname === "/") {
                 scroll();
             }
         });
-    }, 2000);
+    }, 210);
 
     function sendMessageData(data) {
         if (data[1].length < 1) return console.log("Missing data");
