@@ -2,7 +2,7 @@ const userID = localStorage.getItem("userID");
 const user = localStorage.getItem("user");
 const password = localStorage.getItem("password");
 const firstTime = !localStorage.getItem("hasUser");
-const serverURL = "https://my-chat-server-cu1k.onrender.com";
+const serverURL = "http://localhost:8081";
 const messageInputPlaceholders = ["Hi", "Nice weather today", "Bla, bla, bla"];
 
 let lastJSON;
@@ -118,10 +118,11 @@ if (location.pathname === "/") {
                 scroll();
             }
         });
-    }, 210);
+    }, 2000);
 
     function sendMessageData(data) {
         if (data[1].length < 1) return console.log("Missing data");
+        messageInput.value = "";
         // POST request using fetch()
         fetch(serverURL + "/api/messages", {
             // Adding method type
