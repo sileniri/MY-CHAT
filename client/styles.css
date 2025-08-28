@@ -1,5 +1,7 @@
 :root {
     --page-margin-inline: 2vw;
+    --header--height: 12vh;
+    --send-messages--height: 15vh;
 }
 
 :root[data-theme="light"] {
@@ -66,13 +68,13 @@
 }
 
 html {
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
     scroll-behavior: smooth;
     font-size: clamp(10px, calc(1.5vh + 0.5vw), 16px);
 }
 
 body {
+    overflow: hidden;
     min-height: 100vh;
     font-weight: 400;
     /* width: 100%; */
@@ -87,7 +89,7 @@ header {
     background-color: var(--background);
     z-index: 10;
     padding-inline: var(--page-margin-inline);
-    height: 12vh;
+    height: var(--header--height, 12vh);
     width: 100%;
 
     display: flex;
@@ -175,7 +177,7 @@ input {
     border-top: 3px solid var(--primary);
     z-index: 10;
     background-color: var(--background);
-    height: 15vh;
+    height: var(--send-messages--height, 15vh);
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -256,12 +258,12 @@ main:has(#messages) {
 }
 
 #messages {
+    max-height: calc(100vh - var(--header--height) - var(--send-messages--height));
     flex-grow: 1;
     margin-inline: var(--page-margin-inline);
     display: flex;
     flex-direction: column;
     justify-content: end;
-    padding-block: 14vh 17vh;
     overflow-y: scroll;
 }
 
@@ -401,4 +403,3 @@ main:has(#theme) {
 #theme:hover {
     filter: drop-shadow(0 0 20px var(--primary)) drop-shadow(0 0 30px var(--accent));
 }
-
