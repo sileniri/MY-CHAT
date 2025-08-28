@@ -80,9 +80,6 @@ body {
     /* width: 100%; */
     /* COLORS!! */
     background-color: var(--background);
-
-    display: flex;
-    flex-direction: column;
 }
 
 header {
@@ -235,12 +232,6 @@ header a {
 
 a {
     cursor: pointer;
-}
-
-main:has(#messages) {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
 }
 
 .body {
@@ -403,3 +394,4 @@ main:has(#theme) {
 #theme:hover {
     filter: drop-shadow(0 0 20px var(--primary)) drop-shadow(0 0 30px var(--accent));
 }
+
