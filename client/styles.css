@@ -78,9 +78,6 @@ body {
     /* width: 100%; */
     /* COLORS!! */
     background-color: var(--background);
-
-    display: flex;
-    flex-direction: column;
 }
 
 header {
@@ -236,8 +233,7 @@ a {
 }
 
 main:has(#messages) {
-    flex-grow: 1;
-    overflow-y: scroll;
+    display: flex;
 }
 
 .body {
@@ -255,13 +251,13 @@ main:has(#messages) {
 }
 
 #messages {
-    min-height: 100vh;
+    flex-wrap: 1;
     margin-inline: var(--page-margin-inline);
     display: flex;
     flex-direction: column;
     justify-content: end;
     padding-block: 14vh 17vh;
-    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .newuser .body::before {
