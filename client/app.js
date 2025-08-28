@@ -2,7 +2,7 @@ const userID = localStorage.getItem("userID");
 const user = localStorage.getItem("user");
 const password = localStorage.getItem("password");
 const firstTime = !localStorage.getItem("hasUser");
-const serverURL = "http://localhost:8081";
+const serverURL = "https://my-chat-server-cu1k.onrender.com/";
 const messageInputPlaceholders = ["Hi", "Nice weather today", "Bla, bla, bla"];
 
 let lastJSON;
@@ -317,3 +317,4 @@ function updateThemeBtn(btn) {
         btnText.innerHTML = "light_mode";
     }
 }
+
